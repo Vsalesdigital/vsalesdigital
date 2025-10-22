@@ -25,7 +25,7 @@
     .hero-zoom:hover{transform:scale(1.06)}
 
     /* Hero agency background (use exact file: assets/Capture.JPG) */
-    .hero-hero{background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.35)),url('assets/Capture.JPG') center/cover no-repeat;color:#fff;padding:6rem 0}
+    .hero-hero{background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.35)),url<img src="assets/Capture.JPG" alt="hero background"> center/cover no-repeat;color:#fff;padding:6rem 0}
 
     /* Buttons */
     .btn-white{background:#fff;color:#000;font-weight:600;border-radius:8px;padding:.6rem 1rem;display:inline-block}
@@ -33,7 +33,7 @@
 
     /* Service cards with image overlay */
     .service-card{position:relative;height:260px;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end}
-    .service-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.6));}
+    .service-card .overlay
     .service-card .content{position:relative;z-index:2;padding:1.25rem}
 
     /* Modal */
