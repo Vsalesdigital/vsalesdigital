@@ -7,31 +7,45 @@
   <title>VsalesDigital — Dropshipping Mentor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Theme */
-    :root{--bg:#ffffff;--fg:#000000;--muted:#6b7280;--card:#f7f7f7}
-    body{background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    :root{--bg:#000;--fg:#fff;--muted:#9ca3af;--card:#0b0b0b}
+    html,body{height:100%}
+    body{background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;margin:0}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
 
     /* Header */
     header{transition:all .28s ease;z-index:60}
-    header.sticky{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    header.sticky{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
     header.shrink .logo-mark{transform:scale(.86)}
     header .logo-mark{transition:transform .28s ease}
 
     /* Animations */
     .fade-in{opacity:0;transform:translateY(18px);animation:fadeInUp .9s ease .15s forwards}
     @keyframes fadeInUp{to{opacity:1;transform:none}}
-    .hero-zoom{transform:scale(1.03);transition:transform 6s ease}
+    .hero-zoom{transform:scale(1.02);transition:transform 6s ease}
     .hero-zoom:hover{transform:scale(1.06)}
 
+    /* Hero agency background (put hero-bg.jpg in assets/) */
+    .hero-hero{background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.35)),url('assets/hero-bg.jpg') center/cover no-repeat;color:#fff;padding:6rem 0}
+
     /* Buttons */
-    .btn-black{background:#000;color:#fff}
-    .btn-black:hover{background:#111}
+    .btn-white{background:#fff;color:#000;font-weight:600;border-radius:8px;padding:.6rem 1rem;display:inline-block}
+    .btn-white:hover{opacity:.95}
 
-    /* Responsive container tweak */
-    .container{max-width:1100px;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
+    /* Service cards with image overlay */
+    .service-card{position:relative;height:220px;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end}
+    .service-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.6));}
+    .service-card .content{position:relative;z-index:2;padding:1.25rem}
 
-    /* Minor card style */
-    .card{background:var(--card)}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal{background:var(--card);color:var(--fg);max-width:760px;width:95%;border-radius:12px;padding:1.25rem}
+
+    /* Signup popup */
+    .signup-badge{position:fixed;right:20px;bottom:20px;background:#111;border:1px solid #222;padding:10px 14px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);z-index:70}
+
+    /* small screens tweaks */
+    @media (max-width:768px){.service-card{height:180px}}
+
   </style>
 </head>
 <body class="leading-relaxed">
@@ -39,60 +53,61 @@
   <header id="siteHeader" class="py-4">
     <div class="container flex items-center justify-between">
       <div class="flex items-center gap-3 logo-mark">
-        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">VS</div>
+        <img src="assets/logo.png" alt="VsalesDigital Logo" class="w-12 h-12 rounded-full object-cover" />
         <div>
           <h1 class="text-lg font-bold">VsalesDigital</h1>
-          <p class="text-xs text-gray-500">Dropshipping Mentor</p>
+          <p class="text-xs text-gray-400">Dropshipping Mentor</p>
         </div>
       </div>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-700">
-        <a href="#about" class="hover:text-black">About</a>
-        <a href="#services" class="hover:text-black">What I Teach</a>
-        <a href="#proof" class="hover:text-black">Proof</a>
-        <a href="#testimonials" class="hover:text-black">Testimonials</a>
-        <a href="#contact" class="hover:text-black">Contact</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-300">
+        <a href="#about" class="hover:text-white">About</a>
+        <a href="#services" class="hover:text-white">What I Teach</a>
+        <a href="#proof" class="hover:text-white">Proof</a>
+        <a href="#testimonials" class="hover:text-white">Testimonials</a>
+        <a href="#contact" class="hover:text-white">Contact</a>
       </nav>
-      <div class="md:hidden"></div>
     </div>
   </header>
 
   <!-- Hero -->
   <main>
-    <section class="container grid md:grid-cols-2 gap-10 items-center pt-24 pb-14">
-      <div class="fade-in">
-        <p class="text-sm text-gray-600 font-medium">Trusted Dropshipping Mentor</p>
-        <h2 class="text-4xl md:text-5xl font-extrabold mt-3">Helping new dropshippers launch a successful business</h2>
-        <p class="mt-4 text-gray-700 max-w-xl">At VsalesDigital we turn curiosity into consistent sales. We teach practical product research, conversion-first store design, and ad strategies that scale — all backed by real student results and hands-on mentoring.</p>
-        <div class="mt-6 flex gap-3">
-          <a href="#contact" class="btn-black px-5 py-3 rounded-md font-semibold shadow">Work With Me</a>
-          <a href="#proof" class="px-5 py-3 rounded-md border border-black font-semibold hover:bg-black hover:text-white transition">See Student Results</a>
+    <section class="hero-hero">
+      <div class="container grid md:grid-cols-2 gap-10 items-center">
+        <div class="fade-in">
+          <p class="text-sm text-green-300 font-medium">Trusted Dropshipping Mentor</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold mt-3">Turning beginners into confident, profitable dropshippers</h2>
+          <p class="mt-4 max-w-xl text-gray-200">VsalesDigital combines hands-on mentorship with data-driven systems to help students find winning products, build conversion-first stores, and scale ads sustainably. Real results. Real speed. Real mentorship.</p>
+          <div class="mt-6 flex gap-3">
+            <a href="#contact" class="btn-white">Work With Me</a>
+            <button onclick="openModal('signupModal')" class="btn-white">Get Free Mentorship</button>
+          </div>
+          <div class="mt-6 text-sm text-gray-300">Email: <a href="mailto:vsalesdigital@gmail.com" class="text-white underline">vsalesdigital@gmail.com</a> • Instagram: <a href="https://instagram.com/henrymak6" target="_blank" class="text-white underline">@henrymak6</a></div>
         </div>
-        <div class="mt-6 text-sm text-gray-600">Email: <a href="mailto:vsalesdigital2@gmail.com" class="text-black">vsalesdigital2@gmail.com</a></div>
-      </div>
 
-      <div class="overflow-hidden rounded-2xl shadow card hero-zoom">
-        <img src="https://picsum.photos/900/600?seed=mentor-hero" alt="VsalesDigital mentor" class="w-full h-full object-cover object-center" />
+        <div class="overflow-hidden rounded-2xl shadow card hero-zoom">
+          <img src="assets/hero-portrait.jpg" alt="VsalesDigital mentor" class="w-full h-full object-cover object-center" />
+        </div>
       </div>
     </section>
 
     <!-- About -->
     <section id="about" class="container py-12">
-      <div class="bg-white card rounded-2xl p-8 shadow">
-        <h3 class="text-2xl font-bold">About VsalesDigital</h3>
+      <div class="bg-transparent rounded-2xl p-0">
+        <h3 class="text-2xl font-bold text-white">About VsalesDigital</h3>
         <div class="mt-4 grid md:grid-cols-2 gap-6">
           <div>
-            <p class="text-gray-700">VsalesDigital started as a simple experiment — late nights, small ad budgets, and a stubborn refusal to accept mediocre results. Over time, the experiments turned into repeatable systems: product research that actually predicts demand, store setups that convert, and ad tests that reveal winners quickly.</p>
-            <p class="mt-4 text-gray-700">Today, VsalesDigital helps beginners turn their first ideas into profitable Shopify stores. We focus on practical steps, mindset, and community support — the three ingredients that speed up success and reduce costly mistakes.</p>
+            <p class="text-gray-300">VsalesDigital began as late-night experiments and small launches. Over time, those experiments formed a repeatable system used to find winners, optimize stores, and scale ads. We teach practical steps — not theory — and guide students through every step of their first profitable launches.</p>
+            <p class="mt-4 text-gray-300">Our mentorship focuses on hands-on support, clear checklists, and fast feedback loops so students avoid common mistakes and reach results faster.</p>
           </div>
           <div>
-            <h4 class="font-semibold">Our Approach</h4>
-            <ul class="mt-3 text-gray-700 list-disc list-inside space-y-2">
-              <li>Hands-on mentorship: real feedback during launches</li>
-              <li>Data-first product research: minimize risk, maximize returns</li>
-              <li>Conversion-led store design: pages that build trust</li>
-              <li>Scaling with systems: profitable growth without burnout</li>
+            <h4 class="font-semibold text-white">Our Approach</h4>
+            <ul class="mt-3 text-gray-300 list-disc list-inside space-y-2">
+              <li>Hands-on mentoring during launch and scaling</li>
+              <li>Data-led product validation to reduce risk</li>
+              <li>Conversion-first store design and copy</li>
+              <li>Automation & fulfillment for lean ops</li>
             </ul>
-            <blockquote class="mt-6 p-4 border-l-4 border-black italic text-gray-700">"We believe success in dropshipping starts with belief, guidance, and consistent action."</blockquote>
+            <blockquote class="mt-6 p-4 border-l-4 border-white italic text-gray-300">We believe success comes from clear systems, real support, and consistent execution.</blockquote>
           </div>
         </div>
       </div>
@@ -100,99 +115,149 @@
 
     <!-- Services -->
     <section id="services" class="container py-12">
-      <h3 class="text-2xl font-bold">What I Teach</h3>
-      <p class="text-gray-700 mt-2">A practical curriculum built to get stores selling quickly and scaling sustainably.</p>
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="p-6 card rounded-xl shadow">
-          <h4 class="font-semibold text-lg">Winning Product Research</h4>
-          <p class="mt-2 text-gray-700 text-sm">Data-backed product discovery and validation processes that reduce guesswork.</p>
-        </div>
-        <div class="p-6 card rounded-xl shadow">
-          <h4 class="font-semibold text-lg">High-Converting Stores</h4>
-          <p class="mt-2 text-gray-700 text-sm">Store layouts, copy, and trust elements optimized for conversion.</p>
-        </div>
-        <div class="p-6 card rounded-xl shadow">
-          <h4 class="font-semibold text-lg">Ads & Creatives</h4>
-          <p class="mt-2 text-gray-700 text-sm">Ad testing frameworks and creative templates for Facebook and TikTok.</p>
-        </div>
-      </div>
+      <h3 class="text-2xl font-bold text-white">What I Teach</h3>
+      <p class="text-gray-300 mt-2">Practical modules focused on launches and scaling. Click "Learn More" on any card to read full details.</p>
 
       <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <div class="p-6 card rounded-xl shadow">
-          <h4 class="font-semibold text-lg">Analytics & Scaling</h4>
-          <p class="mt-2 text-gray-700 text-sm">How to read performance data, optimize ROAS and scale sustainably.</p>
+        <div class="service-card" style="background:url('assets/service-product.jpg') center/cover no-repeat">
+          <div class="overlay"></div>
+          <div class="content text-white">
+            <h4 class="text-xl font-semibold">Product Research</h4>
+            <p class="text-sm mt-2">Find high-demand products using tools and frameworks that predict winners.</p>
+            <div class="mt-4">
+              <button class="btn-white" onclick="openModal('service1')">Learn More</button>
+            </div>
+          </div>
         </div>
-        <div class="p-6 card rounded-xl shadow">
-          <h4 class="font-semibold text-lg">Automation & Fulfillment</h4>
-          <p class="mt-2 text-gray-700 text-sm">Supplier management, order automation and lean operations.</p>
+
+        <div class="service-card" style="background:url('assets/service-store.jpg') center/cover no-repeat">
+          <div class="overlay"></div>
+          <div class="content text-white">
+            <h4 class="text-xl font-semibold">Store Setup</h4>
+            <p class="text-sm mt-2">Conversion-first store builds, optimized product pages and trust signals.</p>
+            <div class="mt-4">
+              <button class="btn-white" onclick="openModal('service2')">Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card" style="background:url('assets/service-ads.jpg') center/cover no-repeat">
+          <div class="overlay"></div>
+          <div class="content text-white">
+            <h4 class="text-xl font-semibold">Marketing Strategy</h4>
+            <p class="text-sm mt-2">Ad frameworks and creative testing for Facebook & TikTok that find winners fast.</p>
+            <div class="mt-4">
+              <button class="btn-white" onclick="openModal('service3')">Learn More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card" style="background:url('assets/service-auto.jpg') center/cover no-repeat">
+          <div class="overlay"></div>
+          <div class="content text-white">
+            <h4 class="text-xl font-semibold">Automation & Fulfillment</h4>
+            <p class="text-sm mt-2">Supplier setup, order flows and automation to keep your store lean.</p>
+            <div class="mt-4">
+              <button class="btn-white" onclick="openModal('service4')">Learn More</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Proof -->
-    <section id="proof" class="container py-12 bg-gray-50 rounded-2xl">
-      <h3 class="text-2xl font-bold">Student Results & Shopify Proof</h3>
-      <p class="text-gray-700 mt-2">Below are placeholder screenshots representing typical Shopify dashboards and results my students have achieved. Replace with real screenshots for maximum credibility.</p>
+    <!-- Proof (case studies) -->
+    <section id="proof" class="container py-12">
+      <h3 class="text-2xl font-bold text-white">Student Results & Real Shopify Proof</h3>
+      <p class="text-gray-300 mt-2">Real screenshots from live student stores and test launches.</p>
+
       <div class="mt-6 grid md:grid-cols-3 gap-6">
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="https://picsum.photos/600/360?seed=shop1" alt="Sales screenshot 1" class="w-full h-40 object-cover" />
-          <div class="p-4">
-            <h4 class="font-semibold">$12,450 Total Sales</h4>
-            <p class="text-sm text-gray-600 mt-1">Sold in 14 days — multiple winning products. (Placeholder)</p>
+          <img src="assets/shop-small.jpg" alt="$209.88 sales day" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Small Launch — Quick Win</h4>
+            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$209.88</strong> — 2 orders in a day from targeted testing.</p>
           </div>
         </div>
+
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="https://picsum.photos/600/360?seed=shop2" alt="Sales screenshot 2" class="w-full h-40 object-cover" />
-          <div class="p-4">
-            <h4 class="font-semibold">$8,320 First Week</h4>
-            <p class="text-sm text-gray-600 mt-1">High-margin SKUs + scaled ads. (Placeholder)</p>
+          <img src="assets/shop-medium.jpg" alt="$1,005.67 sales week" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Medium Launch — First Week Momentum</h4>
+            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$1,005.67</strong> — 32 orders and an 8% conversion in the first week.</p>
           </div>
         </div>
+
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="https://picsum.photos/600/360?seed=shop3" alt="Sales screenshot 3" class="w-full h-40 object-cover" />
-          <div class="p-4">
-            <h4 class="font-semibold">$4,900 Profitable Month</h4>
-            <p class="text-sm text-gray-600 mt-1">Sustainable ROAS after optimizations. (Placeholder)</p>
+          <img src="assets/shop-scale.jpg" alt="$100k sales" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Scale Example — Store Growth</h4>
+            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$100,432.36</strong> across a scaling window — 2,429 orders.</p>
           </div>
         </div>
       </div>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="rounded-xl overflow-hidden shadow card">
+          <img src="assets/order-list.jpg" alt="Order list screenshot" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Live Orders</h4>
+            <p class="text-sm text-gray-300 mt-1">Screenshot showing real order numbers and fulfillment queue.</p>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow card">
+          <img src="assets/mobile-dashboard.jpg" alt="Mobile Shopify dashboard" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Mobile Dashboard</h4>
+            <p class="text-sm text-gray-300 mt-1">Phone screenshots showing sessions, sales and orders.</p>
+          </div>
+        </div>
+        <div class="rounded-xl overflow-hidden shadow card">
+          <img src="assets/sales-140.jpg" alt="$140 sales example" class="w-full h-48 object-cover" />
+          <div class="p-4 bg-black">
+            <h4 class="font-semibold">Consistent Growth</h4>
+            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$140</strong> over a short window — an example of steady progress.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-4 text-xs text-gray-500">Tip: Replace the files in the <code>assets/</code> folder with your real screenshots. Filenames used: <code>service-product.jpg</code>, <code>service-store.jpg</code>, <code>service-ads.jpg</code>, <code>service-auto.jpg</code>, <code>shop-small.jpg</code>, <code>shop-medium.jpg</code>, <code>shop-scale.jpg</code>, <code>order-list.jpg</code>, <code>mobile-dashboard.jpg</code>, <code>sales-140.jpg</code>, <code>hero-bg.jpg</code>, <code>hero-portrait.jpg</code>, <code>logo.png</code>.</p>
     </section>
 
     <!-- Testimonials -->
     <section id="testimonials" class="container py-12">
-      <h3 class="text-2xl font-bold">Student Testimonials</h3>
+      <h3 class="text-2xl font-bold text-white">Student Testimonials</h3>
       <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="p-6 card rounded-xl shadow">
-          <p class="text-gray-700">“VsalesDigital gave me a clear launch plan and the support I needed to hit my first profitable month. Highly recommend for beginners.”</p>
-          <p class="mt-4 text-sm text-gray-500">— L. Student</p>
+        <div class="p-6 card rounded-xl shadow bg-black">
+          <p class="text-gray-300">“VsalesDigital gave me a clear launch plan and the support I needed to hit my first profitable month. The step-by-step approach is priceless.”</p>
+          <p class="mt-4 text-sm text-gray-500">— Lisa, First-time store owner</p>
         </div>
-        <div class="p-6 card rounded-xl shadow">
-          <p class="text-gray-700">“Practical, honest, and results-focused mentorship. The ad testing system saved me weeks of mistakes.”</p>
-          <p class="mt-4 text-sm text-gray-500">— M. Student</p>
+        <div class="p-6 card rounded-xl shadow bg-black">
+          <p class="text-gray-300">“Practical, honest, and results-focused mentorship. I scaled to multiple profitable campaigns after implementing the ad testing system.”</p>
+          <p class="mt-4 text-sm text-gray-500">— Mark, Scaled store owner</p>
         </div>
-        <div class="p-6 card rounded-xl shadow">
-          <p class="text-gray-700">“From product research to scaling, every step is actionable. The community support is the icing on the cake.”</p>
-          <p class="mt-4 text-sm text-gray-500">— A. Student</p>
+        <div class="p-6 card rounded-xl shadow bg-black">
+          <p class="text-gray-300">“The product research framework saved me weeks of guessing and helped me launch a winning SKU.”</p>
+          <p class="mt-4 text-sm text-gray-500">— Ana, Mentor student</p>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="container py-12 bg-white card rounded-2xl shadow">
+    <section id="contact" class="container py-12 bg-transparent">
       <div class="grid md:grid-cols-2 gap-6 items-center">
         <div>
-          <h3 class="text-2xl font-bold">Work with VsalesDigital</h3>
-          <p class="text-gray-700 mt-2">Ready to start your dropshipping journey? Book a free call and let's create a plan that gets you results.</p>
+          <h3 class="text-2xl font-bold text-white">Work with VsalesDigital</h3>
+          <p class="text-gray-300 mt-2">Book a free strategy call and we'll review your store, find quick wins, and map a growth path you can follow.</p>
           <div class="mt-6">
-            <a href="mailto:vsalesdigital@gmail.com" class="btn-black px-6 py-3 rounded-md font-semibold shadow">Email vsalesdigital@gmail.com</a>
+            <a href="mailto:vsalesdigital@gmail.com" class="btn-white">Email vsalesdigital@gmail.com</a>
           </div>
         </div>
-        <div class="text-sm text-gray-700">
-          <h4 class="font-semibold">Follow & Contact</h4>
+        <div class="text-sm text-gray-300">
+          <h4 class="font-semibold text-white">Follow & Contact</h4>
           <ul class="mt-3 space-y-2">
-            <li>Email: <a href="mailto:vsalesdigital@gmail.com" class="text-black">vsalesdigital@gmail.com</a></li>
+            <li>Email: <a href="mailto:vsalesdigital@gmail.com" class="text-white underline">vsalesdigital@gmail.com</a></li>
             <li>Discord: share your invite link here</li>
-            <li>Instagram: @henrymark6</li>
+            <li>Instagram: <a href="https://instagram.com/henrymak6" target="_blank" class="text-white underline">@henrymak6</a></li>
           </ul>
         </div>
       </div>
@@ -200,9 +265,47 @@
 
     <!-- Footer -->
     <footer class="container text-center py-8 text-gray-500 text-sm">
-      <p>© <span id="year"></span> VsalesDigital — Dropshipping Mentor. All rights reserved.</p>
+      <p class="text-gray-400">© <span id="year"></span> VsalesDigital — Dropshipping Mentor. All rights reserved.</p>
     </footer>
   </main>
+
+  <!-- Modals -->
+  <div id="modalBackdrop" class="modal-backdrop" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div id="modalContent"> <!-- injected content --> </div>
+      <div class="mt-4 text-right">
+        <button class="btn-white" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Badge (small) -->
+  <div id="signupBadge" class="signup-badge" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="flex:1">
+        <strong>Free Mentorship</strong>
+        <div style="font-size:12px;color:#9ca3af">Get a free strategy call</div>
+      </div>
+      <div>
+        <button class="btn-white" onclick="openModal('signupModal')">Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Signup Modal (hidden content) -->
+  <div id="signupModalContent" style="display:none">
+    <h3 class="text-xl font-bold">Sign Up for Free Mentorship</h3>
+    <p class="text-gray-300 mt-2">Enter your details and I’ll personally review your store and suggest quick wins.</p>
+    <form id="signupForm" class="mt-4">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input name="name" placeholder="Your name" required style="flex:1;padding:.6rem;border-radius:8px;border:1px solid #222;background:#050505;color:#fff" />
+        <input name="email" type="email" placeholder="Your email" required style="flex:1;padding:.6rem;border-radius:8px;border:1px solid #222;background:#050505;color:#fff" />
+      </div>
+      <textarea name="message" placeholder="A short note about your store (optional)" style="width:100%;margin-top:10px;padding:.6rem;border-radius:8px;border:1px solid #222;background:#050505;color:#fff"></textarea>
+      <div class="mt-4 text-right"><button type="submit" class="btn-white">Request Free Mentorship</button></div>
+      <p class="text-xs text-gray-400 mt-2">By submitting you agree to receive emails about your mentorship.</p>
+    </form>
+  </div>
 
   <script>
     // Fill year
@@ -221,12 +324,63 @@
       }
     });
 
-    // Simple fade-in for logo and nav links
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.fade-in').forEach((el, i) => {
-        el.style.animationDelay = (i * 120) + 'ms';
-      });
+    // Modal functions
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalContent = document.getElementById('modalContent');
+    function openModal(id){
+      // populate content
+      if(id === 'service1'){
+        modalContent.innerHTML = `<h3 class="text-xl font-bold">Product Research</h3><p class="mt-2 text-gray-300">Deep-dive product research: trends, demand signals, and practical validation tests you can run in hours. We'll provide tools, checklists and hands-on feedback during research.</p><ul class='mt-3 text-gray-300 list-disc list-inside'><li>Market scanning</li><li>Creative ideation</li><li>Scale-ready validation</li></ul>`;
+      } else if(id === 'service2'){
+        modalContent.innerHTML = `<h3 class="text-xl font-bold">Store Setup</h3><p class="mt-2 text-gray-300">Conversion-first store builds: product pages, trust & refund policies, upsells and checkout optimization. We review and edit your store live on calls.</p>`;
+      } else if(id === 'service3'){
+        modalContent.innerHTML = `<h3 class="text-xl font-bold">Marketing Strategy</h3><p class="mt-2 text-gray-300">Ad frameworks for Facebook & TikTok: quick test setups, creative templates, and scaling rules to move from test to reliable ROAS.</p>`;
+      } else if(id === 'service4'){
+        modalContent.innerHTML = `<h3 class="text-xl font-bold">Automation & Fulfillment</h3><p class="mt-2 text-gray-300">Supplier setup, order automation and fulfillment routing to ensure timely delivery and simple operations.</p>`;
+      } else if(id === 'signupModal'){
+        modalContent.innerHTML = document.getElementById('signupModalContent').innerHTML;
+        // attach form handler
+        const form = document.getElementById('signupForm');
+        form && form.addEventListener('submit', handleSignup);
+      }
+      modalBackdrop.style.display = 'flex';
+    }
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalContent.innerHTML = '';
+    }
+
+    // Signup badge show after 10 seconds and auto-open signup modal after 10s too
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{
+        document.getElementById('signupBadge').style.display = 'block';
+        // also auto open the signup modal
+        openModal('signupModal');
+      }, 10000);
     });
+
+    // Handle signup form: use mailto fallback
+    function handleSignup(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const name = data.get('name') || '';
+      const email = data.get('email') || '';
+      const message = data.get('message') || '';
+      const subject = encodeURIComponent('Free Mentorship Request - ' + name);
+      const body = encodeURIComponent(`Name: ${name}
+Email: ${email}
+
+Message:
+${message}`);
+      // open mail client as fallback
+      window.location.href = `mailto:vsalesdigital@gmail.com?subject=${subject}&body=${body}`;
+      // close modal
+      closeModal();
+    }
+
+    // Close modal on ESC
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
   </script>
 </body>
 </html>
