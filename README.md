@@ -14,7 +14,7 @@
 
     /* Header */
     header{transition:all .28s ease;z-index:60}
-    header.sticky{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+    header.sticky{position:fixed;top:0;left:0;right:0;background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
     header.shrink .logo-mark{transform:scale(.86)}
     header .logo-mark{transition:transform .28s ease}
 
@@ -24,28 +24,30 @@
     .hero-zoom{transform:scale(1.02);transition:transform 6s ease}
     .hero-zoom:hover{transform:scale(1.06)}
 
-    /* Hero agency background (put hero-bg.jpg in assets/) */
-    .hero-hero{background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.35)),url('assets/hero-bg.jpg') center/cover no-repeat;color:#fff;padding:6rem 0}
+    /* Hero agency background (use exact file: assets/Capture.JPG) */
+    .hero-hero{background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.35)),url('assets/Capture.JPG') center/cover no-repeat;color:#fff;padding:6rem 0}
 
     /* Buttons */
     .btn-white{background:#fff;color:#000;font-weight:600;border-radius:8px;padding:.6rem 1rem;display:inline-block}
     .btn-white:hover{opacity:.95}
 
     /* Service cards with image overlay */
-    .service-card{position:relative;height:220px;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end}
-    .service-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15),rgba(0,0,0,0.6));}
+    .service-card{position:relative;height:260px;border-radius:14px;overflow:hidden;display:flex;align-items:flex-end}
+    .service-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.6));}
     .service-card .content{position:relative;z-index:2;padding:1.25rem}
 
     /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:80}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.75);display:none;align-items:center;justify-content:center;z-index:90}
     .modal{background:var(--card);color:var(--fg);max-width:760px;width:95%;border-radius:12px;padding:1.25rem}
 
     /* Signup popup */
-    .signup-badge{position:fixed;right:20px;bottom:20px;background:#111;border:1px solid #222;padding:10px 14px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);z-index:70}
+    .signup-badge{position:fixed;right:20px;bottom:20px;background:#0f0f0f;border:1px solid #222;padding:10px 14px;border-radius:10px;box-shadow:0 8px 30px rgba(0,0,0,0.6);z-index:80}
 
-    /* small screens tweaks */
-    @media (max-width:768px){.service-card{height:180px}}
+    /* Packages */
+    .price-card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:1.25rem;border-radius:12px}
+    .price-card .price{font-size:1.6rem;font-weight:700}
 
+    @media (max-width:768px){.service-card{height:200px}}
   </style>
 </head>
 <body class="leading-relaxed">
@@ -53,7 +55,14 @@
   <header id="siteHeader" class="py-4">
     <div class="container flex items-center justify-between">
       <div class="flex items-center gap-3 logo-mark">
-        <img src="assets/logo.png" alt="VsalesDigital Logo" class="w-12 h-12 rounded-full object-cover" />
+        <!-- Inline SVG logo (no external file needed) -->
+        <div aria-hidden="true" style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#111,#222);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.6)">
+          <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VsalesDigital logo">
+            <rect width="100" height="100" rx="18" fill="#fff" fill-opacity="0" />
+            <path d="M18 78 L36 22 L54 78 Z" fill="#fff" opacity="0.95" />
+            <text x="60" y="72" fill="#fff" font-family="Verdana" font-size="18" font-weight="700">VS</text>
+          </svg>
+        </div>
         <div>
           <h1 class="text-lg font-bold">VsalesDigital</h1>
           <p class="text-xs text-gray-400">Dropshipping Mentor</p>
@@ -62,8 +71,8 @@
       <nav class="hidden md:flex items-center gap-6 text-sm text-gray-300">
         <a href="#about" class="hover:text-white">About</a>
         <a href="#services" class="hover:text-white">What I Teach</a>
+        <a href="#packages" class="hover:text-white">Packages</a>
         <a href="#proof" class="hover:text-white">Proof</a>
-        <a href="#testimonials" class="hover:text-white">Testimonials</a>
         <a href="#contact" class="hover:text-white">Contact</a>
       </nav>
     </div>
@@ -75,7 +84,7 @@
       <div class="container grid md:grid-cols-2 gap-10 items-center">
         <div class="fade-in">
           <p class="text-sm text-green-300 font-medium">Trusted Dropshipping Mentor</p>
-          <h2 class="text-4xl md:text-5xl font-extrabold mt-3">Turning beginners into confident, profitable dropshippers</h2>
+          <h2 class="text-4xl md:text-5xl font-extrabold mt-3">Helping new dropshippers launch a successful business</h2>
           <p class="mt-4 max-w-xl text-gray-200">VsalesDigital combines hands-on mentorship with data-driven systems to help students find winning products, build conversion-first stores, and scale ads sustainably. Real results. Real speed. Real mentorship.</p>
           <div class="mt-6 flex gap-3">
             <a href="#contact" class="btn-white">Work With Me</a>
@@ -85,7 +94,7 @@
         </div>
 
         <div class="overflow-hidden rounded-2xl shadow card hero-zoom">
-          <img src="assets/hero-portrait.jpg" alt="VsalesDigital mentor" class="w-full h-full object-cover object-center" />
+          <img src="assets/image%20(1).webp" alt="VsalesDigital mentor" class="w-full h-full object-cover object-center" />
         </div>
       </div>
     </section>
@@ -119,7 +128,7 @@
       <p class="text-gray-300 mt-2">Practical modules focused on launches and scaling. Click "Learn More" on any card to read full details.</p>
 
       <div class="mt-6 grid md:grid-cols-2 gap-6">
-        <div class="service-card" style="background:url('assets/service-product.jpg') center/cover no-repeat">
+        <div class="service-card" style="background:url('assets/IMG-20251019-WA0062.webp') center/cover no-repeat">
           <div class="overlay"></div>
           <div class="content text-white">
             <h4 class="text-xl font-semibold">Product Research</h4>
@@ -130,7 +139,7 @@
           </div>
         </div>
 
-        <div class="service-card" style="background:url('assets/service-store.jpg') center/cover no-repeat">
+        <div class="service-card" style="background:url('assets/IMG-20251019-WA0068.webp') center/cover no-repeat">
           <div class="overlay"></div>
           <div class="content text-white">
             <h4 class="text-xl font-semibold">Store Setup</h4>
@@ -141,10 +150,10 @@
           </div>
         </div>
 
-        <div class="service-card" style="background:url('assets/service-ads.jpg') center/cover no-repeat">
+        <div class="service-card" style="background:url('assets/140.webp') center/cover no-repeat">
           <div class="overlay"></div>
           <div class="content text-white">
-            <h4 class="text-xl font-semibold">Marketing Strategy</h4>
+            <h4 class="text-xl font-semibold">Marketing & Ads</h4>
             <p class="text-sm mt-2">Ad frameworks and creative testing for Facebook & TikTok that find winners fast.</p>
             <div class="mt-4">
               <button class="btn-white" onclick="openModal('service3')">Learn More</button>
@@ -152,7 +161,7 @@
           </div>
         </div>
 
-        <div class="service-card" style="background:url('assets/service-auto.jpg') center/cover no-repeat">
+        <div class="service-card" style="background:url('assets/image.webp') center/cover no-repeat">
           <div class="overlay"></div>
           <div class="content text-white">
             <h4 class="text-xl font-semibold">Automation & Fulfillment</h4>
@@ -165,62 +174,66 @@
       </div>
     </section>
 
-    <!-- Proof (case studies) -->
+    <!-- Packages -->
+    <section id="packages" class="container py-12">
+      <h3 class="text-2xl font-bold text-white">Mentorship Packages</h3>
+      <p class="text-gray-300 mt-2">Straightforward packages for beginners through to advanced sellers.</p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="price-card text-center">
+          <h4 class="font-semibold">Starter</h4>
+          <div class="price mt-3">$50</div>
+          <p class="text-gray-300 mt-2">Perfect for beginners — product research and store setup guidance to get your first sales.</p>
+          <div class="mt-4"><button class="btn-white" onclick="openModal('package1')">Get Started</button></div>
+        </div>
+
+        <div class="price-card text-center" style="transform:scale(1.03);box-shadow:0 10px 40px rgba(255,255,255,0.03)">
+          <h4 class="font-semibold">Growth</h4>
+          <div class="price mt-3">$150</div>
+          <p class="text-gray-300 mt-2">For stores ready to scale — ad strategy, creatives, and conversion optimization.</p>
+          <div class="mt-4"><button class="btn-white" onclick="openModal('package2')">Apply Now</button></div>
+        </div>
+
+        <div class="price-card text-center">
+          <h4 class="font-semibold">Premium</h4>
+          <div class="price mt-3">$500</div>
+          <p class="text-gray-300 mt-2">Full automation, supplier integration, and advanced scaling systems for high-growth stores.</p>
+          <div class="mt-4"><button class="btn-white" onclick="openModal('package3')">Join Coaching</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof (case studies using uploaded images) -->
     <section id="proof" class="container py-12">
-      <h3 class="text-2xl font-bold text-white">Student Results & Real Shopify Proof</h3>
-      <p class="text-gray-300 mt-2">Real screenshots from live student stores and test launches.</p>
+      <h3 class="text-2xl font-bold text-white">Real Results & Student Proof</h3>
+      <p class="text-gray-300 mt-2">Actual screenshots from live student stores and launch tests you provided.</p>
 
       <div class="mt-6 grid md:grid-cols-3 gap-6">
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/shop-small.jpg" alt="$209.88 sales day" class="w-full h-48 object-cover" />
+          <img src="assets/image.webp" alt="Sales screenshot 1" class="w-full h-48 object-cover" />
           <div class="p-4 bg-black">
             <h4 class="font-semibold">Small Launch — Quick Win</h4>
-            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$209.88</strong> — 2 orders in a day from targeted testing.</p>
+            <p class="text-sm text-gray-300 mt-1">Total sales snapshot from a launch day.</p>
           </div>
         </div>
 
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/shop-medium.jpg" alt="$1,005.67 sales week" class="w-full h-48 object-cover" />
+          <img src="assets/image%20(1).webp" alt="Sales screenshot 2" class="w-full h-48 object-cover" />
           <div class="p-4 bg-black">
-            <h4 class="font-semibold">Medium Launch — First Week Momentum</h4>
-            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$1,005.67</strong> — 32 orders and an 8% conversion in the first week.</p>
+            <h4 class="font-semibold">Momentum Week</h4>
+            <p class="text-sm text-gray-300 mt-1">First week results and orders captured from tests.</p>
           </div>
         </div>
 
         <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/shop-scale.jpg" alt="$100k sales" class="w-full h-48 object-cover" />
+          <img src="assets/image%20(2).webp" alt="Sales screenshot 3" class="w-full h-48 object-cover" />
           <div class="p-4 bg-black">
-            <h4 class="font-semibold">Scale Example — Store Growth</h4>
-            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$100,432.36</strong> across a scaling window — 2,429 orders.</p>
+            <h4 class="font-semibold">Scaling Snapshot</h4>
+            <p class="text-sm text-gray-300 mt-1">Aggregated sales proof and growth trends.</p>
           </div>
         </div>
       </div>
 
-      <div class="mt-6 grid md:grid-cols-3 gap-6">
-        <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/order-list.jpg" alt="Order list screenshot" class="w-full h-48 object-cover" />
-          <div class="p-4 bg-black">
-            <h4 class="font-semibold">Live Orders</h4>
-            <p class="text-sm text-gray-300 mt-1">Screenshot showing real order numbers and fulfillment queue.</p>
-          </div>
-        </div>
-        <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/mobile-dashboard.jpg" alt="Mobile Shopify dashboard" class="w-full h-48 object-cover" />
-          <div class="p-4 bg-black">
-            <h4 class="font-semibold">Mobile Dashboard</h4>
-            <p class="text-sm text-gray-300 mt-1">Phone screenshots showing sessions, sales and orders.</p>
-          </div>
-        </div>
-        <div class="rounded-xl overflow-hidden shadow card">
-          <img src="assets/sales-140.jpg" alt="$140 sales example" class="w-full h-48 object-cover" />
-          <div class="p-4 bg-black">
-            <h4 class="font-semibold">Consistent Growth</h4>
-            <p class="text-sm text-gray-300 mt-1">Total sales: <strong>$140</strong> over a short window — an example of steady progress.</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="mt-4 text-xs text-gray-500">Tip: Replace the files in the <code>assets/</code> folder with your real screenshots. Filenames used: <code>service-product.jpg</code>, <code>service-store.jpg</code>, <code>service-ads.jpg</code>, <code>service-auto.jpg</code>, <code>shop-small.jpg</code>, <code>shop-medium.jpg</code>, <code>shop-scale.jpg</code>, <code>order-list.jpg</code>, <code>mobile-dashboard.jpg</code>, <code>sales-140.jpg</code>, <code>hero-bg.jpg</code>, <code>hero-portrait.jpg</code>, <code>logo.png</code>.</p>
     </section>
 
     <!-- Testimonials -->
@@ -330,13 +343,19 @@
     function openModal(id){
       // populate content
       if(id === 'service1'){
-        modalContent.innerHTML = `<h3 class="text-xl font-bold">Product Research</h3><p class="mt-2 text-gray-300">Deep-dive product research: trends, demand signals, and practical validation tests you can run in hours. We'll provide tools, checklists and hands-on feedback during research.</p><ul class='mt-3 text-gray-300 list-disc list-inside'><li>Market scanning</li><li>Creative ideation</li><li>Scale-ready validation</li></ul>`;
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Product Research</h3><p class=\"mt-2 text-gray-300\">Deep-dive product research: trends, demand signals, and practical validation tests you can run in hours. We'll provide tools, checklists and hands-on feedback during research.</p><ul class='mt-3 text-gray-300 list-disc list-inside'><li>Market scanning</li><li>Creative ideation</li><li>Scale-ready validation</li></ul>`;
       } else if(id === 'service2'){
-        modalContent.innerHTML = `<h3 class="text-xl font-bold">Store Setup</h3><p class="mt-2 text-gray-300">Conversion-first store builds: product pages, trust & refund policies, upsells and checkout optimization. We review and edit your store live on calls.</p>`;
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Store Setup</h3><p class=\"mt-2 text-gray-300\">Conversion-first store builds: product pages, trust & refund policies, upsells and checkout optimization. We review and edit your store live on calls.</p>`;
       } else if(id === 'service3'){
-        modalContent.innerHTML = `<h3 class="text-xl font-bold">Marketing Strategy</h3><p class="mt-2 text-gray-300">Ad frameworks for Facebook & TikTok: quick test setups, creative templates, and scaling rules to move from test to reliable ROAS.</p>`;
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Marketing & Ads</h3><p class=\"mt-2 text-gray-300\">Ad frameworks for Facebook & TikTok: quick test setups, creative templates, and scaling rules to move from test to reliable ROAS.</p>`;
       } else if(id === 'service4'){
-        modalContent.innerHTML = `<h3 class="text-xl font-bold">Automation & Fulfillment</h3><p class="mt-2 text-gray-300">Supplier setup, order automation and fulfillment routing to ensure timely delivery and simple operations.</p>`;
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Automation & Fulfillment</h3><p class=\"mt-2 text-gray-300\">Supplier setup, order automation and fulfillment routing to ensure timely delivery and simple operations.</p>`;
+      } else if(id === 'package1'){
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Starter Package — $50</h3><p class=\"mt-2 text-gray-300\">Includes product research checklist, basic store setup guide and 1 review session. Perfect for beginners.</p><div class=\"mt-4 text-right\"><button class=\"btn-white\" onclick=\"openModal('signupModal')\">Request Starter</button></div>`;
+      } else if(id === 'package2'){
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Growth Package — $150</h3><p class=\"mt-2 text-gray-300\">Includes ad strategy, creative testing templates, and 3 review sessions for scaling your store.</p><div class=\"mt-4 text-right\"><button class=\"btn-white\" onclick=\"openModal('signupModal')\">Apply for Growth</button></div>`;
+      } else if(id === 'package3'){
+        modalContent.innerHTML = `<h3 class=\"text-xl font-bold\">Premium Package — $500</h3><p class=\"mt-2 text-gray-300\">Full onboarding, automation & supplier integration, and hands-on scaling support across 6 sessions.</p><div class=\"mt-4 text-right\"><button class=\"btn-white\" onclick=\"openModal('signupModal')\">Join Premium</button></div>`;
       } else if(id === 'signupModal'){
         modalContent.innerHTML = document.getElementById('signupModalContent').innerHTML;
         // attach form handler
@@ -350,11 +369,10 @@
       modalContent.innerHTML = '';
     }
 
-    // Signup badge show after 10 seconds and auto-open signup modal after 10s too
+    // Signup badge show after 10 seconds and auto-open signup modal after 10s
     window.addEventListener('load', ()=>{
       setTimeout(()=>{
         document.getElementById('signupBadge').style.display = 'block';
-        // also auto open the signup modal
         openModal('signupModal');
       }, 10000);
     });
@@ -368,11 +386,7 @@
       const email = data.get('email') || '';
       const message = data.get('message') || '';
       const subject = encodeURIComponent('Free Mentorship Request - ' + name);
-      const body = encodeURIComponent(`Name: ${name}
-Email: ${email}
-
-Message:
-${message}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
       // open mail client as fallback
       window.location.href = `mailto:vsalesdigital@gmail.com?subject=${subject}&body=${body}`;
       // close modal
